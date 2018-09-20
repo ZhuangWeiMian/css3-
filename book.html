@@ -98,20 +98,9 @@
 
 <body>
     <div class="book p3d" style="transform:translate(-50%, -50%) rotateX(28.2625deg);">
-        <div class="back-cover p3d">
-            <div class="page back flip"></div>
-            <div class="page front p3d">
-                <div class="dino" style="transform: rotateX(-34.95deg);">
-                    <p>
-                        <h1 style="opacity: 0;">嘻嘻嘻嘻</h1>
-                    </p>
-                </div>
-            </div>
-        </div>
         <div class="front-cover p3d" style="transform: rotateY(-15.9deg);">
             <div class="page front flip p3d num1">
                 <p>
-                    <h1>千里求姻缘</h1>
                     <br> 你好～我叫伟娩。
                     <br> 大名庄阿牛，小名娩娩
                     <br> 来自广东的大妹子
@@ -121,6 +110,17 @@
             <div class="page back">
             </div>
         </div>
+        <div class="back-cover p3d">
+            <div class="page back flip"></div>
+            <div class="page front p3d">
+                <div class="dino" style="transform: rotateX(-34.95deg);">
+                    <p>
+                        <h1 style="opacity: 1;">嘻嘻嘻嘻</h1>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script>
         (function (window, document) {
@@ -163,7 +163,6 @@
                 } else {
                     pageTitle.style.opacity = 0;
                 }
-                //  dino.style.transform = 'rotateX(' + (angle / 4) + 'deg)';
             };
 
         })(window, document);
