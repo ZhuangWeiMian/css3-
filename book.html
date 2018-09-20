@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>千里来相会</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            overflow: hidden;
+            font: 100%/1.25 Helvetica, Arial, sans-serif;
+            color: #e0eef5;
+
+            perspective: 1000px;
+            background-color: #444444;
+        }
+
+        h1 {
+            font-size: 2em;
+            opacity: 0;
+        }
+
+        .book {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            transform: rotateX(60deg);
+            left: 50%;
+            top: 50%;
+            user-select: none;
+        }
+
+        .page {
+            width: 300px;
+            height: 300px;
+            padding: 1em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-indent: 2em;
+        }
+
+        .front {
+            background-color: #d93e2b;
+        }
+
+        .back {
+            background-color: #e0eef5;
+        }
+
+        .front-cover {
+            cursor: pointer;
+
+            transform-origin: 0 50%;
+
+            transform: rotateY(0deg);
+        }
+
+        .front-cover .back {
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU1JHOHuCV6-02V_Tma5WUAXzMQEli5wqMDEjvf_bwnnZvc1_KVg);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            transform: translateZ(5px);
+        }
+
+        .back-cover .back {
+
+            transform: translateZ(-5px);
+        }
+
+        .p3d {
+            transform-style: preserve-3d;
+        }
+
+        .flip {
+            transform: rotateY(180deg);
+        }
+
+        .dino {
+            position: absolute;
+
+            width: 196px;
+            height: 132px;
+            left: 60px;
+            top: 60px;
+            transform-origin: 0 100%;
+        }
+
+        h1 {
+            transition: all 0.5s ease-in;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="book p3d" style="transform:translate(-50%, -50%) rotateX(28.2625deg);">
+        <div class="back-cover p3d">
+            <div class="page back flip"></div>
+            <div class="page front p3d">
+                <div class="dino" style="transform: rotateX(-34.95deg);">
+                    <p>
+                        <h1 style="opacity: 0;">嘻嘻嘻嘻</h1>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="front-cover p3d" style="transform: rotateY(-15.9deg);">
+            <div class="page front flip p3d num1">
+                <p>
+                    <h1>千里求姻缘</h1>
+                    <br> 你好～我叫伟娩。
+                    <br> 大名庄阿牛，小名娩娩
+                    <br> 来自广东的大妹子
+                    <br> 热爱羽毛球，喜欢看书
+                </p>
+            </div>
+            <div class="page back">
+            </div>
+        </div>
+    </div>
+    <script>
+        (function (window, document) {
+            let book = document.querySelectorAll('.book')[0],
+                page = document.querySelectorAll('.front-cover')[0],
+                dino = document.querySelectorAll('.dino')[0],
+                pageTitle = document.querySelectorAll('h1')[0],
+                hold = false,
+                centerPoint = window.innerWidth / 2,
+                pageSize = 300,
+                clamp = function (val, min, max) {
+                    return Math.max(min, Math.min(val, max));
+                };
+            let over = false;
+            page.onmousedown = function () {
+                hold = true;
+            };
+
+            window.onmouseup = function () {
+                if (hold) {
+                    hold = false;
+                }
+            };
+
+            window.onmousemove = function (evt) {
+                if (!hold) {
+                    return;
+                }
+
+                var angle = clamp((centerPoint - evt.pageX + 1 / 2 * pageSize) / pageSize * -90, -180, 0),
+                    i, j;
+
+                let transformXY = book.style.transform.split(' ')[0]; // 这里的目的是让书水平垂直居中的tranlate属性不变
+                book.style.transform = transformXY + '' + 'rotateX(' + (60 + angle / 8) + 'deg)';
+                page.style.transform = 'rotateY(' + angle + 'deg)';
+                let curr = pageTitle.style.opacity
+                if (angle < -70) {
+                    pageTitle.style.opacity = 1
+
+                } else {
+                    pageTitle.style.opacity = 0;
+                }
+                //  dino.style.transform = 'rotateX(' + (angle / 4) + 'deg)';
+            };
+
+        })(window, document);
+    </script>
+</body>
+
+</html>
